@@ -49,7 +49,3 @@ class Solution:
                     rets += matrix[l][k]
 
         return rets
-
-solution = Solution()
-s = solution.convert("PAYPALISHIRING" , 2)
-print("Converted string: "+s)
