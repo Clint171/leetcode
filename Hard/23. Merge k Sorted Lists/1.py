@@ -8,10 +8,6 @@ class ListNode:
 class Solution:
     def mergeKLists(self, lists):
         def insert_to_heap(heap , num):
-            if len(heap) < 1:
-                heap.append(num)
-                return heap
-            
             #append element to empty slot in heap
             heap.append(num)
 
@@ -19,7 +15,7 @@ class Solution:
             num_idx = len(heap) - 1
 
             while num_idx > 0 :
-                num_parent_idx = num_idx//2
+                num_parent_idx = (num_idx - 1)//2
                 
                 # Check if parent is greater than child
                 if heap[num_parent_idx] > heap[num_idx]:
@@ -71,9 +67,12 @@ class Solution:
             # Pick the first element in the array
             element = heap[0]
 
+            if len(heap) == 1:
+                heap.pop()
+                return element
+
             # Replace the element with the last element
-            heap[0] = heap[len(heap)-1]
-            heap.pop()
+            heap[0] = heap.pop()
 
             # Heapify
             heapify(heap , 0)
@@ -92,8 +91,6 @@ class Solution:
             while not(node == None):
                 insert_to_heap(heap , node.val)
                 node = node.next
-        
-        print(heap)
         
         for i in range(len(heap)):
             newNode = ListNode()
